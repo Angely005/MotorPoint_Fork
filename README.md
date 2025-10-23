@@ -45,69 +45,71 @@ El sistema considera dos roles principales:
 A continuación se muestran los pasos para instalar y ejecutar el proyecto de forma local, con las mismas acciones realizadas durante las pruebas. .  
 
 ### **1. Requisitos Previos**
-- Git (clonar el repositorio).
-- Java 17+.
-- Maven (o usar el wrapper ./mvnw incluido).
-- Node.js 16+ y npm.
-- MySQL funcionando localmente.
-- (Opcional) Postman o curl para probar APIs.
+Antes de iniciar, asegúrate de tener instalado:
+- Git → para clonar el repositorio.
+- Java 17+ y Maven → para el backend (Spring Boot).
+- Node.js 16+ y npm → para el frontend (React).
+- MySQL Server funcionando en tu máquina.
+- Opcional el Postman para probar APIs.
   
 ### **2. Inicializar Git en el equipo**
-Lo primero es preparar la carpeta para trabajar con Git, usando:
+En la carpeta destinada al proyecto, se preparó el entorno de Git ejecutando:
 ```bash
 git init
 ```
 <img width="597" height="95" alt="image" src="https://github.com/user-attachments/assets/bbb82e4a-d228-401a-afb7-0d6acb79a8fd" />
 
 ### **3. Clonar el repositorio**
-Luego descargamos el proyecto desde GitHub dentro de la carpeta inicializada, usando:
+Luego, se descargó el proyecto desde GitHub dentro de la carpeta inicializada:
 ```bash
 git clone https://github.com/usuario/motorpoint.git
 cd motorpoint
 ```
 <img width="771" height="260" alt="image" src="https://github.com/user-attachments/assets/90d4a4a3-17e0-4a28-98e3-d54818361464" />
 
-### **4. Crear y moverse a la rama de trabajo**
-Cada integrante trabajó en su propia rama de desarrollo, ejemplo:
+### **4. Configuración del Backend**
+- Crear una base de datos en MySQL, por ejemplo:
 ```bash
-git checkout -b develop-Angely
+CREATE DATABASE motorpoint_db;
 ```
-<img width="801" height="139" alt="image" src="https://github.com/user-attachments/assets/e74c92c4-254e-4443-8fb4-d1799cdcb8ba" />
 
-### **5. Hacer cambios y guardar (commit)**
-Una vez que cada integrante avanzaba en sus tareas, los cambios se guardaban con:
+- Editar el archivo `backend/src/main/resources/application.properties` con tus credenciales:
 ```bash
-git add .
-git commit -m "Descripción breve de los cambios realizados"
+spring.datasource.url=jdbc:mysql://localhost:8080/motorpoint_db
+spring.datasource.username=tu_usuario
+spring.datasource.password=tu_password
 ```
-<img width="1280" height="667" alt="image" src="https://github.com/user-attachments/assets/7e59ef9b-ff8f-4946-b16a-1400c795c0b4" />
 
-### **6. Creación de ramas adicionales para correcciones**
-En algunos casos fue necesario crear ramas específicas para solucionar errores puntuales, por ejemplo:
+- Iniciar el backend: 
 ```bash
-git checkout -b fix/frontend-login
-```
-<img width="1175" height="158" alt="image" src="https://github.com/user-attachments/assets/e3d681c4-9d71-484b-ba30-32befcca37eb" />
+   cd backend
+   mvn spring-boot:run
+ ```
 
-### **7. Subir los cambios a GitHub**
-Una vez confirmados los cambios en la rama, se subieron al repositorio remoto con:
+### **5. Configuración del Frontend**
+- Instalar dependencias:
 ```bash
-git push origin develop-Angely
+cd frontend
+npm install
 ```
-<img width="541" height="128" alt="image" src="https://github.com/user-attachments/assets/1ee73570-a514-4d77-a06a-8b7823b03dcf" />
 
+- Iniciar el frontend:
+```bash
+npm start
+```
 
 ---
 ## 📋 Roles
-| Nombre           | Rol          | Funciones                                              |  
-|------------------|--------------|--------------------------------------------------------|  
-| Ashlee Maldonado | Full Stack   | - Creación de pantallas y componentes reutilizables.<br>- Apoyo en la lógica interna del sistema.<br>- Elaboración de la documentación del proyecto.              | 
-| Angely Corahua   | Full Stack   | - Diseño visual y organización de interfaces.<br>- Manejo de datos mostrados al usuario.<br>- Revisión y validación de formularios.                               |  
-| Bruno Guerra     | Full Stack   | - Desarrollo de reglas y procesos internos del sistema.<br>- Configuración de seguridad y accesos.<br>- Administración del repositorio y despliegue del proyecto. |  
+| *Nombre*          | *Rol*                                     | *Funciones principales* |
+|----------------------|---------------------------------------------|----------------------------|
+| *Ashlee Maldonado* | Full Stack – Líder y Frontend | - Creación de pantallas y componentes.<br>- Apoyo en lógica interna del sistema.<br>- Elaboración y organización de la documentación.<br>- Coordinación del equipo y decisiones.<br>- Testing y validación del sistema. |
+| *Angely Corahua*   | Full Stack  – Frontend e Interfaces | - Diseño y organización de interfaces.<br>- Implementación visual y estilos.<br>- Manejo de datos mostrados al usuario.<br>- Validación de formularios y experiencia de uso.<br>- Testing y pruebas de usabilidad. |
+| *Bruno Guerra*     | Full Stack  – Backend e Infraestructura | - Desarrollo de procesos y reglas internas.<br>- Configuración de seguridad y accesos.<br>- Administración del repositorio y control de versiones.<br>- Despliegue y mantenimiento del sistema.<br>- Testing de calidad y rendimiento. |
 
+---
 ## 🌱 Flujo de trabajo con Git
 
-### 1. Ramas utilizadas
+### **1. Ramas utilizadas**
 - **main** → Rama estable, lista para producción.  
 - **develop-nombre** → Rama de desarrollo.  
 - **feature/nombre** → Nuevas funcionalidades.  
@@ -129,33 +131,11 @@ git checkout -b fix/readme-conflict
 ### **2. Commits**
 - Commits atómicos y descriptivos.
 ```bash
-git commit -m "feat: crear componente Login en React"
+git commit -m "feat: crear página Login en React"
 git commit -m "fix: resolver conflicto en README.md"
 ```
 
-### 3. Uso de comandos Git
-
-Durante el desarrollo del **login** se documentaron los siguientes comandos:
-
----
-
-🔄 **Restaurar archivos**
-```bash
-git restore src/components/Login.jsx
-```
-📌 Por qué: Cuando se modificó accidentalmente el componente Login.jsx y fue necesario volver al estado previo sin perder el resto de los cambios.
-
-⏪ **Resetear cambios**
-```bash
-git reset --soft HEAD~1
-```
-🔀 **Cambiar de ramas**
-```bash
-git switch develop
-```
-📌 Por qué: Al pasar del desarrollo de la nueva feature login hacia la rama de integración develop.
-
-### 4. Pull Request (PR) / Merge Request (MR)
+### **3. Pull Request (PR) / Merge Request (MR)**
 
 - Se generó una Pull Request desde **fix/readme-conflict** hacia **main**.
 
@@ -169,7 +149,7 @@ git switch develop
 
 <img width="1286" height="741" alt="image" src="https://github.com/user-attachments/assets/0431419e-71aa-444d-9cae-c37e5433bc51" />
 
-### 5. Resolución de Conflictos Ejemplo:
+### **4. Resolución de Conflictos Ejemplo:**
 
 Al intentar actualizar la rama **main** con los cambios remotos, se generó un conflicto en el archivo:
 
@@ -193,7 +173,7 @@ El objetivo principal es ofrecer un catálogo digital de productos, organizado y
 
 El sistema considera dos roles principales: **Usuario** y **Administrador** 🚀
 ```
-### 6. Historial de commits (puntos de control)
+### **5. Historial de commits (puntos de control)**
 ### Ejemplo de salida:
 ```bash
 git log
@@ -203,12 +183,112 @@ git log
 
 <img width="1304" height="953" alt="image" src="https://github.com/user-attachments/assets/e57c23d2-9f6e-44e4-8c8d-eecafdb33e61" />
 
-### 7. Historial de cabeceras
+### **6. Historial de cabeceras**
 ```bash
 git reflog
 ```
 <img width="1570" height="547" alt="image" src="https://github.com/user-attachments/assets/fed76798-5ddb-403a-b6cd-a28ea3dcadc8" />
 
 ### 🧩 Estructura de backend
+<img width="364" height="667" alt="image" src="https://github.com/user-attachments/assets/b4ca1eb1-6992-4a81-8325-0176e30f8749" />
+
 ### 🧩 Estructura del Frontend
+<img width="359" height="722" alt="image" src="https://github.com/user-attachments/assets/88731c9d-dd78-47d7-82e5-808b78fc5053" />
+
+---
+
+### **7. Organización**
+- El owner del proyecto creó la organización llamada **Organizacion-MotorPoint**.
+  
+<img width="305" height="608" alt="image" src="https://github.com/user-attachments/assets/be3cb14a-3c16-48fc-898e-6a8f09afacc6" /><br><br>
+
+- Los integrantes del equipo fueron invitados a la organización para colaborar en el repositorio.
+  
+<img width="468" height="270" alt="image" src="https://github.com/user-attachments/assets/a9d7d2bd-2f0d-4df6-b399-c57bb8f817f3" /><br><br>
+
+- Organización creada.
+  
+<img width="615" height="509" alt="image" src="https://github.com/user-attachments/assets/087add3f-be67-4489-a227-5587f0b65d76" /><br><br>
+
+- El repositorio MotorPoint fue transferido desde el perfil personal del owner a la organización
+  
+<img width="417" height="503" alt="image" src="https://github.com/user-attachments/assets/7c8a2209-d081-426a-9236-e89aa917db37" /><br><br>
+
+- Una vez transferido, se actualizó la URL del repositorio remoto en el entorno local para apuntar a la nueva ubicación en la organización.
+  
+<img width="1115" height="75" alt="image" src="https://github.com/user-attachments/assets/a1c2656e-61aa-4f00-9851-22642a6bd84f" /><br><br>
+<img width="1103" height="128" alt="image" src="https://github.com/user-attachments/assets/2e99ac84-5a29-4f2b-8f2c-f4d2d42bca9d" />
+
+---
+
+### **8. Milestone**
+- Creamos 3 milestones, cada uno con una breve descripción.
+  
+<img width="932" height="295" alt="image" src="https://github.com/user-attachments/assets/882f7be3-3a9a-42ff-a5e1-2cbdf0595c7f" /><br><br>
+
+- Cada milestone cuenta con sus issues correspondientes junto con sus asignaciones y etiquetas.
+  
+<img width="696" height="483" alt="image" src="https://github.com/user-attachments/assets/c4764e93-34e8-4b2d-816f-1b1f22f2c27e" /><br><br>
+<img width="675" height="286" alt="image" src="https://github.com/user-attachments/assets/590024ec-c4ff-4f30-b588-f7d8542879e7" />
+<img width="699" height="222" alt="image" src="https://github.com/user-attachments/assets/c7a2b792-ddf3-4970-8abc-7bdf0e5e1c8a" />
+
+---
+
+### **9. Tablero del proyecto**
+
+<img width="1190" height="576" alt="image" src="https://github.com/user-attachments/assets/807220f0-8cce-4eb5-8fe8-ccf13ecef2c6" /><br><br>
+
+---
+
+### **10. Ramas revisión**
+- Branch rules:
+  
+<img width="341" height="606" alt="image" src="https://github.com/user-attachments/assets/9cd91c91-71fc-46b6-888e-97e458136dc4" /><br><br>
+
+- Ramas protegidas:
+
+<img width="918" height="209" alt="image" src="https://github.com/user-attachments/assets/11a16615-e70e-49f0-8064-2a2c31dbf238" /><br><br>
+
+---
+
+### **11. Fork**
+- Opción para crear el fork
+
+<img width="796" height="284" alt="image" src="https://github.com/user-attachments/assets/71ea7a8f-a155-490c-bfcb-af1f3ebe64b9" /><br><br>
+
+- Creación del Fork llamado MotorPoint_Fork
+
+<img width="796" height="597" alt="image" src="https://github.com/user-attachments/assets/ddb547a1-7425-458a-8770-0cbbe1d8412c" /><br><br>
+
+- Paso 1: Clonar el fork en el bash
+
+<img width="1005" height="310" alt="image" src="https://github.com/user-attachments/assets/e342940c-125a-4024-b80c-70b94c2acfcf" /><br><br>
+
+- Visualización del fork creado
+
+<img width="665" height="398" alt="image" src="https://github.com/user-attachments/assets/f56f6625-6a65-4ca1-a32b-5944306d6cb2" /><br><br>
+
+- Paso 2: Colocar comando para verificar
+
+<img width="782" height="102" alt="image" src="https://github.com/user-attachments/assets/cf7c77c0-57a1-4556-80aa-baf362d2d540" /><br><br>
+
+- Paso 3: Añadir un upstream para traer las ramas y más de la organización
+
+<img width="902" height="196" alt="image" src="https://github.com/user-attachments/assets/4691bb23-4f63-4d32-b824-c8737fe1930b" /><br><br>
+
+- Paso 4: Hacer fetch upstream para verificar las ramas traídas
+
+<img width="810" height="443" alt="image" src="https://github.com/user-attachments/assets/ec1d262a-1ee2-40a0-91dd-bb945e86bf50" /><br><br>
+
+- Último paso crear mi rama develop dentro del fork para luego crear más ramas según las issues
+
+<img width="813" height="518" alt="image" src="https://github.com/user-attachments/assets/7232648b-2ca2-44b3-9c03-032b95c7c6ff" /><br><br>
+
+
+
+
+
+  
+
+
 
