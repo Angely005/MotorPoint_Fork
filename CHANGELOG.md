@@ -11,7 +11,9 @@ Todas las versiones importantes de **MotorPoint** estarán documentadas en este 
 - Archivos de configuración por entorno (dev, local, prod). (commit `0af5681`)  
 - Ruta de archivo sensible añadida al `.gitignore`. (commit `be8b40f`)  
 - Archivo `application.yml` de back-end agregado. (commit `5329ee4`)  
-- Múltiples archivos `.gitkeep` para asegurar la estructura de directorios. (commit `930e1c5`)  
+- Múltiples archivos `.gitkeep` para asegurar la estructura de directorios. (commit `930e1c5`)
+- Archivo `CONTRIBUTING.md` agregado. (commit `85aad13`)  
+- Archivo `CHANGELOG.md` agregado. (commit `d58f879`)
 
 ### Modificado
 - Actualización del `README.md` con instrucciones de instalación y flujo Git. (commit `4a84a8c`, `22b8469`)  
