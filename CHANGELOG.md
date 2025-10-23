@@ -4,6 +4,22 @@ Todas las versiones importantes de **MotorPoint** estarán documentadas en este 
 
 ## [Unreleased]
 ### Añadido
+- Implementación de las pantallas de autenticación (Login y Register) con validación y conexión al backend a través de los endpoints `/auth/login` y `/auth/register`. (PR #35 by @Angely005)
+- Componente `Login` y `Register` creados en `src/pages/auth/` con mensajes de validación, error y éxito. (commits: `4d4678b`, `258270e`)
+- Servicio `authService` añadido en `src/services/authService.js` para manejar las llamadas a la API de autenticación. (commit: `fee31d0`)
+- Estilos CSS para el flujo de autenticación añadidos en `src/styles/Auth.css`. (commit: `bc9b2f5`)
+
+
+- Ajustes de configuración y enrutamiento para integrar las nuevas pantallas de autenticación. (commit: `bd38171`)
+
+
+### Eliminado
+- Eliminación del antiguo componente `Login.jsx` obsoleto. (commit: `336ecd1`)
+
+---
+
+## [0.1.1] – 2025-10-23
+### Añadido
 - Plantillas de issues para reporte de bugs. (commit `69ee286`)  
 - Archivo de configuración para plantillas de issues. (commit `9e082d8`)  
 - Plantilla para solicitudes de funcionalidad/pull requests mejorada. (commit `df6d189`)  
