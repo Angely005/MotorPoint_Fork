@@ -195,4 +195,100 @@ git reflog
 ### 🧩 Estructura del Frontend
 <img width="359" height="722" alt="image" src="https://github.com/user-attachments/assets/88731c9d-dd78-47d7-82e5-808b78fc5053" />
 
+---
+
+### **7. Organización**
+- El owner del proyecto creó la organización llamada **Organizacion-MotorPoint**.
+  
+<img width="305" height="608" alt="image" src="https://github.com/user-attachments/assets/be3cb14a-3c16-48fc-898e-6a8f09afacc6" /><br><br>
+
+- Los integrantes del equipo fueron invitados a la organización para colaborar en el repositorio.
+  
+<img width="468" height="270" alt="image" src="https://github.com/user-attachments/assets/a9d7d2bd-2f0d-4df6-b399-c57bb8f817f3" /><br><br>
+
+- Organización creada.
+  
+<img width="615" height="509" alt="image" src="https://github.com/user-attachments/assets/087add3f-be67-4489-a227-5587f0b65d76" /><br><br>
+
+- El repositorio MotorPoint fue transferido desde el perfil personal del owner a la organización
+  
+<img width="417" height="503" alt="image" src="https://github.com/user-attachments/assets/7c8a2209-d081-426a-9236-e89aa917db37" /><br><br>
+
+- Una vez transferido, se actualizó la URL del repositorio remoto en el entorno local para apuntar a la nueva ubicación en la organización.
+  
+<img width="1115" height="75" alt="image" src="https://github.com/user-attachments/assets/a1c2656e-61aa-4f00-9851-22642a6bd84f" /><br><br>
+<img width="1103" height="128" alt="image" src="https://github.com/user-attachments/assets/2e99ac84-5a29-4f2b-8f2c-f4d2d42bca9d" />
+
+---
+
+### **8. Milestone**
+- Creamos 3 milestones, cada uno con una breve descripción.
+  
+<img width="932" height="295" alt="image" src="https://github.com/user-attachments/assets/882f7be3-3a9a-42ff-a5e1-2cbdf0595c7f" /><br><br>
+
+- Cada milestone cuenta con sus issues correspondientes junto con sus asignaciones y etiquetas.
+  
+<img width="696" height="483" alt="image" src="https://github.com/user-attachments/assets/c4764e93-34e8-4b2d-816f-1b1f22f2c27e" /><br><br>
+<img width="675" height="286" alt="image" src="https://github.com/user-attachments/assets/590024ec-c4ff-4f30-b588-f7d8542879e7" />
+<img width="699" height="222" alt="image" src="https://github.com/user-attachments/assets/c7a2b792-ddf3-4970-8abc-7bdf0e5e1c8a" />
+
+---
+
+### **9. Tablero del proyecto**
+
+<img width="1190" height="576" alt="image" src="https://github.com/user-attachments/assets/807220f0-8cce-4eb5-8fe8-ccf13ecef2c6" /><br><br>
+
+---
+
+### **10. Ramas revisión**
+- Branch rules:
+  
+<img width="341" height="606" alt="image" src="https://github.com/user-attachments/assets/9cd91c91-71fc-46b6-888e-97e458136dc4" /><br><br>
+
+- Ramas protegidas:
+
+<img width="918" height="209" alt="image" src="https://github.com/user-attachments/assets/11a16615-e70e-49f0-8064-2a2c31dbf238" /><br><br>
+
+---
+
+### **11. Fork**
+- Opción para crear el fork
+
+<img width="796" height="284" alt="image" src="https://github.com/user-attachments/assets/71ea7a8f-a155-490c-bfcb-af1f3ebe64b9" /><br><br>
+
+- Creación del Fork llamado MotorPoint_Fork
+
+<img width="796" height="597" alt="image" src="https://github.com/user-attachments/assets/ddb547a1-7425-458a-8770-0cbbe1d8412c" /><br><br>
+
+- Paso 1: Clonar el fork en el bash
+
+<img width="1005" height="310" alt="image" src="https://github.com/user-attachments/assets/e342940c-125a-4024-b80c-70b94c2acfcf" /><br><br>
+
+- Visualización del fork creado
+
+<img width="665" height="398" alt="image" src="https://github.com/user-attachments/assets/f56f6625-6a65-4ca1-a32b-5944306d6cb2" /><br><br>
+
+- Paso 2: Colocar comando para verificar
+
+<img width="782" height="102" alt="image" src="https://github.com/user-attachments/assets/cf7c77c0-57a1-4556-80aa-baf362d2d540" /><br><br>
+
+- Paso 3: Añadir un upstream para traer las ramas y más de la organización
+
+<img width="902" height="196" alt="image" src="https://github.com/user-attachments/assets/4691bb23-4f63-4d32-b824-c8737fe1930b" /><br><br>
+
+- Paso 4: Hacer fetch upstream para verificar las ramas traídas
+
+<img width="810" height="443" alt="image" src="https://github.com/user-attachments/assets/ec1d262a-1ee2-40a0-91dd-bb945e86bf50" /><br><br>
+
+- Último paso crear mi rama develop dentro del fork para luego crear más ramas según las issues
+
+<img width="813" height="518" alt="image" src="https://github.com/user-attachments/assets/7232648b-2ca2-44b3-9c03-032b95c7c6ff" /><br><br>
+
+
+
+
+
+  
+
+
 
