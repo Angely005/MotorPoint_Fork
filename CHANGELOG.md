@@ -4,6 +4,18 @@ Todas las versiones importantes de **MotorPoint** estarán documentadas en este 
 
 ## [Unreleased]
 ### Añadido
+- <!-- Ningún cambio publicado todavía -->
+
+### Modificado
+- <!-- Ningún cambio publicado todavía -->
+
+### Eliminado
+- <!-- Ningún cambio publicado todavía -->
+
+---
+
+## [0.1.1] – 2025-10-23
+### Añadido
 - Plantillas de issues para reporte de bugs. (commit `69ee286`)  
 - Archivo de configuración para plantillas de issues. (commit `9e082d8`)  
 - Plantilla para solicitudes de funcionalidad/pull requests mejorada. (commit `df6d189`)  
