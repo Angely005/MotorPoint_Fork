@@ -1,0 +1,184 @@
+:root {
+  --primary: #DA291C;
+  --primary-foreground: #EFEFEF;
+  --secondary: #AEAEAE;
+  --foreground: #111111;
+  --muted-foreground: #AEAEAE;
+  --border: #E0E0E0;
+  --card: #FFFFFF;
+}
+
+/* Footer Container */
+.footer {
+  border-top: 1px solid var(--border);
+  background-color: var(--card);
+  color: var(--foreground);
+}
+
+.footer-container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 3rem 1rem;
+}
+
+/* Footer Grid*/
+.footer-grid {
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 768px) {
+  .footer-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .footer-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* Marca Section */
+.footer-brand {
+  display: flex;
+  flex-direction: column;
+}
+
+.footer-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+  text-decoration: none;
+  color: inherit;
+}
+
+.footer-logo-icon {
+  display: flex;
+  height: 2.5rem;
+  width: 2.5rem;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.5rem;
+  background-color: var(--primary);
+}
+
+.footer-logo-icon svg {
+  height: 1.25rem;
+  width: 1.25rem;
+  color: var(--primary-foreground);
+}
+
+.footer-logo-text {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: var(--foreground);
+}
+
+.footer-logo-text .highlight {
+  color: var(--primary);
+}
+
+.footer-description {
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+  color: var(--muted-foreground);
+  line-height: 1.4;
+}
+
+/* Social Links */
+.footer-social {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.footer-social-link {
+  display: inline-flex;
+  height: 2.25rem;
+  width: 2.25rem;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  background-color: var(--secondary);
+  color: var(--foreground);
+  text-decoration: none;
+  transition: all 0.18s ease;
+}
+
+.footer-social-link:hover {
+  background-color: var(--primary);
+  color: var(--primary-foreground);
+}
+
+.footer-social-link svg {
+  height: 1rem;
+  width: 1rem;
+}
+
+/* Footer Sections */
+.footer-section {
+  display: flex;
+  flex-direction: column;
+}
+
+.footer-section-title {
+  margin-bottom: 1rem;
+  font-size: 0.875rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--foreground);
+}
+
+.footer-section-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-section-list li {
+  font-size: 0.95rem;
+}
+
+.footer-section-link {
+  color: var(--muted-foreground);
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+
+.footer-section-link:hover {
+  color: var(--primary);
+}
+
+/* Footer Bottom */
+.footer-bottom {
+  margin-top: 2.5rem;
+  border-top: 1px solid var(--border);
+  padding-top: 1.25rem;
+  text-align: center;
+  font-size: 0.9rem;
+  color: var(--muted-foreground);
+}
+
+.footer-bottom p {
+  margin: 0;
+}
+
+/* Ajustes de accesibilidad y espaciado */
+.footer a {
+  outline: none;
+}
+
+.footer a:focus {
+  box-shadow: 0 0 0 3px rgba(218, 41, 28, 0.12);
+  border-radius: 6px;
+}
+
+/* Asegurar que los iconos dentro de los enlaces no añadan espacio extra */
+.footer svg {
+  display: block;
+}
