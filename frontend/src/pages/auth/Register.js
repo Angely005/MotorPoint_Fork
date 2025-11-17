@@ -1,121 +1,132 @@
 import React, { useState } from "react";
-import { useNavigate, Link } from "react-router-dom";
-import "../../styles/Auth.css";
+import { Link, useNavigate } from "react-router-dom";
+import "../../styles/Register.css";
 
-function Register() {
+const Register = () => {
   const navigate = useNavigate();
-  const [formData, setFormData] = useState({
-    name: "",
+
+  const [form, setForm] = useState({
+    nombre: "",
     email: "",
     password: "",
-    confirmPassword: "",
+    confirmPassword: ""
   });
-  const [message, setMessage] = useState("");
 
-  const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
+  const [errors, setErrors] = useState({});
+
+  const validate = () => {
+    const newErrors = {};
+
+    if (!form.nombre.trim()) {
+      newErrors.nombre = "El nombre es obligatorio";
+    }
+
+    if (!form.email.trim()) {
+      newErrors.email = "El email es obligatorio";
+    } else if (!/\S+@\S+\.\S+/.test(form.email)) {
+      newErrors.email = "Formato de email inválido";
+    }
+
+    if (!form.password.trim()) {
+      newErrors.password = "La contraseña es obligatoria";
+    } else if (form.password.length < 6) {
+      newErrors.password =
+        "La contraseña debe tener mínimo 6 caracteres";
+    }
+
+    if (form.confirmPassword !== form.password) {
+      newErrors.confirmPassword = "Las contraseñas no coinciden";
+    }
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = async (e) => {
+  const handleRegister = (e) => {
     e.preventDefault();
-    setMessage("");
 
-    if (!formData.name || !formData.email || !formData.password || !formData.confirmPassword) {
-      setMessage("Por favor completa todos los campos");
-      return;
-    }
+    if (!validate()) return;
 
-    if (formData.password !== formData.confirmPassword) {
-      setMessage("Las contraseñas no coinciden ❌");
-      return;
-    }
-
-    try {
-      const response = await fetch("http://localhost:4000/auth/register", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          name: formData.name,
-          email: formData.email,
-          password: formData.password,
-        }),
-      });
-
-      const data = await response.json();
-
-      if (response.ok) {
-        setMessage("Registro exitoso ✅ Redirigiendo...");
-        setTimeout(() => navigate("/login"), 1500);
-      } else {
-        setMessage(data.message || "Error al registrarse ❌");
-      }
-    } catch (error) {
-      setMessage("Error de conexión con el servidor");
-    }
+    console.log("REGISTRO:", form);
+    navigate("/login");
   };
+
+  const handleChange = (e) =>
+    setForm({ ...form, [e.target.name]: e.target.value });
 
   return (
     <div className="auth-container">
-      <h2>Registro</h2>
-      <form onSubmit={handleSubmit} className="auth-form">
-        <label>Nombre</label>
-        <input
-          type="text"
-          name="name"
-          placeholder="Ingresa tu nombre"
-          value={formData.name}
-          onChange={handleChange}
-          required
-        />
+      <div className="auth-card">
 
-        <label>Email</label>
-        <input
-          type="email"
-          name="email"
-          placeholder="Ingresa tu correo"
-          value={formData.email}
-          onChange={handleChange}
-          required
-        />
-
-        <label>Contraseña</label>
-        <input
-          type="password"
-          name="password"
-          placeholder="Crea una contraseña"
-          value={formData.password}
-          onChange={handleChange}
-          required
-        />
-
-        <label>Confirmar Contraseña</label>
-        <input
-          type="password"
-          name="confirmPassword"
-          placeholder="Repite la contraseña"
-          value={formData.confirmPassword}
-          onChange={handleChange}
-          required
-        />
-
-        <button type="submit" className="auth-button">
-          Registrarse
+        <button className="back-btn" onClick={() => navigate("/")}>
+          ← Volver al inicio
         </button>
 
+        <h2 className="auth-title">Crear Cuenta</h2>
+
+        <form className="auth-form" onSubmit={handleRegister}>
+          <label>Nombre completo</label>
+          <input
+            name="nombre"
+            type="text"
+            placeholder="Tu nombre"
+            value={form.nombre}
+            onChange={handleChange}
+          />
+          {errors.nombre && (
+            <p className="error-message">{errors.nombre}</p>
+          )}
+
+          <label>Email</label>
+          <input
+            name="email"
+            type="email"
+            placeholder="ejemplo@correo.com"
+            value={form.email}
+            onChange={handleChange}
+          />
+          {errors.email && (
+            <p className="error-message">{errors.email}</p>
+          )}
+
+          <label>Contraseña</label>
+          <input
+            name="password"
+            type="password"
+            placeholder="Mínimo 6 caracteres"
+            value={form.password}
+            onChange={handleChange}
+          />
+          {errors.password && (
+            <p className="error-message">{errors.password}</p>
+          )}
+
+          <label>Confirmar contraseña</label>
+          <input
+            name="confirmPassword"
+            type="password"
+            placeholder="Repite tu contraseña"
+            value={form.confirmPassword}
+            onChange={handleChange}
+          />
+          {errors.confirmPassword && (
+            <p className="error-message">{errors.confirmPassword}</p>
+          )}
+
+          <button className="auth-btn" type="submit">
+            Registrarse
+          </button>
+        </form>
+
         <p className="redirect-text">
-          ¿Ya tienes cuenta?{" "}
-          <Link to="/login" className="link">
-            Inicia sesión
+          ¿Ya tienes cuenta?
+          <Link className="redirect-link" to="/login">
+            Inicia sesión aquí
           </Link>
         </p>
-
-        {message && <p className="message">{message}</p>}
-      </form>
+      </div>
     </div>
   );
-}
+};
 
 export default Register;
