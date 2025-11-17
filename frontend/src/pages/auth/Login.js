@@ -1,123 +1,99 @@
 import React, { useState } from "react";
-import { useNavigate, Link } from "react-router-dom";
-import "../../styles/Auth.css";
+import { Link, useNavigate } from "react-router-dom";
+import "../../styles/Login.css";
 
-function Login() {
+const Login = () => {
   const navigate = useNavigate();
-  const [formData, setFormData] = useState({
-    email: "",
-    password: "",
-    remember: false,
-  });
-  const [message, setMessage] = useState("");
-  const [loading, setLoading] = useState(false);
 
-  const handleChange = (e) => {
-    const { name, value, type, checked } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: type === "checkbox" ? checked : value
-    }));
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const [errors, setErrors] = useState({});
+
+  const validate = () => {
+    const newErrors = {};
+
+    if (!email.trim()) {
+      newErrors.email = "El email es obligatorio";
+    } else if (!/\S+@\S+\.\S+/.test(email)) {
+      newErrors.email = "Formato de email inválido";
+    }
+
+    if (!password.trim()) {
+      newErrors.password = "La contraseña es obligatoria";
+    } else if (password.length < 6) {
+      newErrors.password = "La contraseña debe tener mínimo 6 caracteres";
+    }
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = async (e) => {
+  const handleLogin = (e) => {
     e.preventDefault();
-    setMessage("");
 
-    if (!formData.email || !formData.password) {
-      setMessage("Por favor completa todos los campos");
-      return;
-    }
+    if (!validate()) return;
 
-    setLoading(true);
-    try {
-      const response = await fetch("http://localhost:4000/auth/login", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          email: formData.email,
-          password: formData.password,
-        }),
-      });
-
-      const data = await response.json();
-      setLoading(false);
-
-      if (response.ok && data.token) {
-        setMessage("Inicio de sesión exitoso ");
-        if (formData.remember) {
-          localStorage.setItem("token", data.token);
-        } else {
-          sessionStorage.setItem("token", data.token);
-        }
-        setTimeout(() => navigate("/"), 800);
-      } else {
-        setMessage(data.message || "Credenciales incorrectas");
-      }
-    } catch (error) {
-      setLoading(false);
-      setMessage("Error de conexión con el servidor");
-    }
+    console.log("INICIO DE SESIÓN:", { email, password });
+    navigate("/");
   };
 
   return (
     <div className="auth-container">
-      <h2>Iniciar Sesión</h2>
-      <form onSubmit={handleSubmit} className="auth-form" noValidate>
-        <label>Email</label>
-        <input
-          type="email"
-          name="email"
-          placeholder="Ingresa tu correo"
-          value={formData.email}
-          onChange={handleChange}
-          required
-        />
+      <div className="auth-card">
 
-        <label>Contraseña</label>
-        <input
-          type="password"
-          name="password"
-          placeholder="Ingresa tu contraseña"
-          value={formData.password}
-          onChange={handleChange}
-          required
-        />
-
-        {/* 🔹 Link centrado debajo del campo contraseña */}
-        <div className="forgot-container">
-          <Link to="/forgot-password" className="forgot-link">
-            ¿Olvidaste tu contraseña?
-          </Link>
-        </div>
-
-        <div className="remember-row">
-          <label className="remember-container">
-            <input
-              type="checkbox"
-              name="remember"
-              checked={formData.remember}
-              onChange={handleChange}
-            />
-            <span>Recuérdame</span>
-          </label>
-        </div>
-
-        <button type="submit" className="auth-button" disabled={loading}>
-          {loading ? "Ingresando..." : "Ingresar"}
+        <button className="back-btn" onClick={() => navigate("/")}>
+          ← Volver al inicio
         </button>
 
+        <h2 className="auth-title">Iniciar Sesión</h2>
+
+        <form className="auth-form" onSubmit={handleLogin}>
+          <label>Email</label>
+          <input
+            type="email"
+            placeholder="ejemplo@correo.com"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+          {errors.email && <p className="error-message">{errors.email}</p>}
+
+          <label>Contraseña</label>
+          <input
+            type="password"
+            placeholder="Ingresa tu contraseña"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+          {errors.password && (
+            <p className="error-message">{errors.password}</p>
+          )}
+
+          <div className="options-row">
+            <label className="remember">
+              <input type="checkbox" />
+              Recuérdame
+            </label>
+
+            <Link className="small-link" to="/recover">
+              ¿Olvidaste tu contraseña?
+            </Link>
+          </div>
+
+          <button className="auth-btn" type="submit">
+            Ingresar
+          </button>
+        </form>
+
         <p className="redirect-text">
-          ¿No tienes cuenta?{" "}
-          <Link to="/register" className="link">
+          ¿No tienes cuenta?
+          <Link className="redirect-link" to="/register">
             Regístrate aquí
           </Link>
         </p>
-
-        {message && <p className="message">{message}</p>}
-      </form>
+      </div>
     </div>
   );
-}
+};
 
 export default Login;
