@@ -8,7 +8,8 @@ import lombok.*;
 @Getter @Setter
 @NoArgsConstructor @AllArgsConstructor @Builder
 public class Usuario {
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String nombre;
@@ -16,18 +17,18 @@ public class Usuario {
     @Column(unique = true, nullable = false)
     private String email;
 
-    @Column(nullable = false)
     private String password;
+
+    @ManyToOne
+    @JoinColumn(name = "rol_id")
+    private Rol rol;
 
     private boolean verificado;
 
     private String verificationCode;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "rol_id", nullable = false)
-    private Rol rol;
-
+    // Método helper para obtener el nombre del rol
     public String getRolNombre() {
-        return rol != null ? rol.getNombre() : null;
+        return rol.getNombre().name(); // devuelve "ROLE_USER" o "ROLE_ADMIN"
     }
 }
