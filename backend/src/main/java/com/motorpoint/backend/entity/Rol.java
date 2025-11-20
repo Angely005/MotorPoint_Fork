@@ -8,9 +8,11 @@ import lombok.*;
 @Getter @Setter
 @NoArgsConstructor @AllArgsConstructor @Builder
 public class Rol {
-    @Id
-    private Integer id;
+     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-    @Column(nullable = false, unique = true)
-    private String nombre; // Ej: ROLE_USER, ROLE_ADMIN
+    @Enumerated(EnumType.STRING)
+    @Column(unique = true, nullable = false)
+    private RoleName nombre;
 }
